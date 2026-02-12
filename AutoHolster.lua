@@ -14,14 +14,11 @@ local function InitializeSettings()
 end
 
 local function SetupMenu()
-    -- Register the main category
     local category = Settings.RegisterVerticalLayoutCategory("AutoHolster")
         
-    -- 1. Toggle for Sheath After Combat
     local cb1_setting = Settings.RegisterAddOnSetting(category, "AutoHolster_CombatOnly", "combatOnly", AutoHolsterDB, Settings.VarType.Boolean, "Sheath After Combat", "Automatically sheathes weapons when combat ends.")
     Settings.CreateCheckbox(category, cb1_setting, "Sheath After Combat", "Put weapons away when leaving combat.")
 
-    -- 2. Toggle for Sheath on Target Change
     local cb2_setting = Settings.RegisterAddOnSetting(category, "AutoHolster_OutsideCombat", "outsideCombat", AutoHolsterDB, Settings.VarType.Boolean, "Sheath on Target Change", "Sheathes weapons when clearing an enemy target or selecting a friendly.")
     Settings.CreateCheckbox(category, cb2_setting, "Sheath on Target Change", "Put weapons away when changing to a non-hostile target.")
 

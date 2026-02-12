@@ -13,13 +13,10 @@ local function InitializeSettings()
     end
 end
 
--- Create the Settings Menu
 local function SetupMenu()
     -- Register the main category
     local category = Settings.RegisterVerticalLayoutCategory("AutoHolster")
-    
-    -- We need to use a 'Getter' and 'Setter' to ensure the menu stays in sync with your SavedVariables
-    
+        
     -- 1. Toggle for Sheath After Combat
     local cb1_setting = Settings.RegisterAddOnSetting(category, "AutoHolster_CombatOnly", "combatOnly", AutoHolsterDB, Settings.VarType.Boolean, "Sheath After Combat", "Automatically sheathes weapons when combat ends.")
     Settings.CreateCheckbox(category, cb1_setting, "Sheath After Combat", "Put weapons away when leaving combat.")

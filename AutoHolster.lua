@@ -26,35 +26,41 @@ local function SetupMenu()
 end
 
 local function TrySheath(event)
+    -- Global checks
     if InCombatLockdown() or IsStealthed() then return end
     if not AutoHolsterDB then return end
 
     local shouldPutAway = false
 
-    -- Logic 1: After Combat
+    -- After Combat
     if event == "PLAYER_REGEN_ENABLED" and AutoHolsterDB.combat then
         shouldPutAway = true
     end
 
-    -- Logic 2: Target Changes
+    --Target Changes
     if AutoHolsterDB.outsideCombat then
         if not UnitExists("target") then
             shouldPutAway = true
         else
             if UnitIsPlayer("target") then
-                if not UnitIsEnemy("player", "target") then shouldPutAway = true end
+                if not UnitIsEnemy("player", "target") then 
+                    shouldPutAway = true 
+                end
             else
                 local guid = UnitGUID("target")
-                if guid then
+                if guid and not issecretvalue(guid) then
                     local unitType = strsplit("-", guid)
                     if unitType ~= "Creature" or not UnitIsEnemy("player", "target") then
                         shouldPutAway = true
                     end
+                elseif guid and issecretvalue(guid) then
+                    shouldPutAway = false
                 end
             end
         end
     end
 
+    -- Execute sheath only if weapons are out
     if shouldPutAway and GetSheathState() ~= 1 then
         ToggleSheath()
     end
@@ -69,4 +75,3 @@ frame:SetScript("OnEvent", function(self, event, arg1)
         C_Timer.After(0.15, function() TrySheath(event) end)
     end
 end)
-

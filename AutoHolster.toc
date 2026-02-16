@@ -2,7 +2,7 @@
 ## Title: AutoHolster
 ## Notes: An addon that provides an RP element to sheating your weapon in different scenarios.
 ## Author: Kyle Kalantzis
-## Beta Version: 0.1
+## Beta Version: 0.2
 ## SavedVariables: AutoHolsterDB
 
 AutoHolster.lua

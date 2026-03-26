@@ -3,4 +3,3 @@ This addon provides an RP element that I felt was missing from the base game wit
 
 ## Version
 1.1
-z
